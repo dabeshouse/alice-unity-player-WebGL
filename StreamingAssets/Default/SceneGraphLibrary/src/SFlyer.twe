@@ -1,0 +1,129 @@
+class SFlyer extends SJointedModel {
+    SFlyer(FlyerResource resource) {
+        super(resource: resource);
+    }
+
+    void spreadWings(Duration duration <- Default.duration(), AnimationStyle animationStyle <- Default.animationStyle()) {
+        this.strikePose(pose: currentResource.spreadWingsPose, duration: duration, animationStyle: animationStyle);
+    }
+
+    void foldWings(Duration duration <- Default.duration(), AnimationStyle animationStyle <- Default.animationStyle()) {
+        this.strikePose(pose: currentResource.foldWingsPose, duration: duration, animationStyle: animationStyle);
+    }
+
+    SJoint[] getTailArray() {
+        return this.getJointArray(jointIdArray: currentResource.tailArray);
+    }
+
+    SJoint[] getNeckArray() {
+        return this.getJointArray(jointIdArray: currentResource.neckArray);
+    }
+
+    SJoint getRoot() {
+        return this.getJoint(jointId: FlyerResource.ROOT );
+    }
+
+    SJoint getSpineBase() {
+        return this.getJoint(jointId: FlyerResource.SPINE_BASE );
+    }
+
+    SJoint getSpineMiddle() {
+        return this.getJoint(jointId: FlyerResource.SPINE_MIDDLE );
+    }
+
+    SJoint getSpineUpper() {
+        return this.getJoint(jointId: FlyerResource.SPINE_UPPER );
+    }
+
+    SJoint getNeck() {
+        return this.getJoint(jointId: FlyerResource.NECK_0 );
+    }
+
+    SJoint getHead() {
+        return this.getJoint(jointId: FlyerResource.HEAD );
+    }
+
+    SJoint getMouth() {
+        return this.getJoint(jointId: FlyerResource.MOUTH );
+    }
+
+    SJoint getLeftEye() {
+        return this.getJoint(jointId: FlyerResource.LEFT_EYE );
+    }
+
+    SJoint getRightEye() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_EYE );
+    }
+
+    SJoint getLeftEyelid() {
+        return this.getJoint(jointId: FlyerResource.LEFT_EYELID );
+    }
+
+    SJoint getRightEyelid() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_EYELID );
+    }
+
+    SJoint getLeftWingShoulder() {
+        return this.getJoint(jointId: FlyerResource.LEFT_WING_SHOULDER );
+    }
+
+    SJoint getLeftWingElbow() {
+        return this.getJoint(jointId: FlyerResource.LEFT_WING_ELBOW );
+    }
+
+    SJoint getLeftWingWrist() {
+        return this.getJoint(jointId: FlyerResource.LEFT_WING_WRIST );
+    }
+
+    SJoint getRightWingShoulder() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_WING_SHOULDER );
+    }
+
+    SJoint getRightWingElbow() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_WING_ELBOW );
+    }
+
+    SJoint getRightWingWrist() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_WING_WRIST );
+    }
+
+    SJoint getPelvisLowerBody() {
+        return this.getJoint(jointId: FlyerResource.PELVIS_LOWER_BODY );
+    }
+
+    SJoint getTail() {
+        return this.getJoint(jointId: FlyerResource.TAIL_0 );
+    }
+
+    SJoint getLeftHip() {
+        return this.getJoint(jointId: FlyerResource.LEFT_HIP );
+    }
+
+    SJoint getLeftKnee() {
+        return this.getJoint(jointId: FlyerResource.LEFT_KNEE );
+    }
+
+    SJoint getLeftAnkle() {
+        return this.getJoint(jointId: FlyerResource.LEFT_ANKLE );
+    }
+
+    SJoint getLeftFoot() {
+        return this.getJoint(jointId: FlyerResource.LEFT_FOOT );
+    }
+
+    SJoint getRightHip() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_HIP );
+    }
+
+    SJoint getRightKnee() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_KNEE );
+    }
+
+    SJoint getRightAnkle() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_ANKLE );
+    }
+
+    SJoint getRightFoot() {
+        return this.getJoint(jointId: FlyerResource.RIGHT_FOOT );
+    }
+}

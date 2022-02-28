@@ -1,0 +1,181 @@
+class SQuadruped extends SJointedModel {
+    SQuadruped(QuadrupedResource resource) {
+        super(resource: resource);
+    }
+
+    SJoint[] getTailArray() {
+        return this.getJointArray(jointIdArray: currentResource.tailArray);
+    }
+
+    SJoint getRoot() {
+        return getJoint(jointId: QuadrupedResource.ROOT);
+    }
+
+    SJoint getPelvisLowerBody() {
+        return getJoint(jointId: QuadrupedResource.PELVIS_LOWER_BODY);
+    }
+
+    SJoint getSpineBase() {
+        return getJoint(jointId: QuadrupedResource.SPINE_BASE);
+    }
+
+    SJoint getSpineMiddle() {
+        return getJoint(jointId: QuadrupedResource.SPINE_MIDDLE);
+    }
+
+    SJoint getSpineUpper() {
+        return getJoint(jointId: QuadrupedResource.SPINE_UPPER);
+    }
+
+    SJoint getNeck() {
+        return getJoint(jointId: QuadrupedResource.NECK);
+    }
+
+    SJoint getHead() {
+        return getJoint(jointId: QuadrupedResource.HEAD);
+    }
+
+    SJoint getMouth() {
+        return getJoint(jointId: QuadrupedResource.MOUTH);
+    }
+
+    SJoint getRightEye() {
+        return getJoint(jointId: QuadrupedResource.RIGHT_EYE);
+    }
+
+    SJoint getLeftEye() {
+        return getJoint(jointId: QuadrupedResource.LEFT_EYE);
+    }
+
+    SJoint getLeftEyelid() {
+        return getJoint(jointId: QuadrupedResource.LEFT_EYELID);
+    }
+
+    SJoint getRightEyelid() {
+        return getJoint(jointId: QuadrupedResource.RIGHT_EYELID);
+    }
+
+    SJoint getLeftEar() {
+        return getJoint(jointId: QuadrupedResource.LEFT_EAR);
+    }
+
+    SJoint getRightEar() {
+        return getJoint(jointId: QuadrupedResource.RIGHT_EAR);
+    }
+
+    SJoint getFrontLeftClavicle() {
+        return getJoint(jointId: QuadrupedResource.FRONT_LEFT_CLAVICLE);
+    }
+
+    SJoint getFrontLeftShoulder() {
+        return getJoint(jointId: QuadrupedResource.FRONT_LEFT_SHOULDER);
+    }
+
+    SJoint getFrontLeftKnee() {
+        return getJoint(jointId: QuadrupedResource.FRONT_LEFT_KNEE);
+    }
+
+    SJoint getFrontLeftAnkle() {
+        return getJoint(jointId: QuadrupedResource.FRONT_LEFT_ANKLE);
+    }
+
+    SJoint getFrontLeftFoot() {
+        return getJoint(jointId: QuadrupedResource.FRONT_LEFT_FOOT);
+    }
+
+    SJoint getFrontLeftToe() {
+        return getJoint(jointId: QuadrupedResource.FRONT_LEFT_TOE);
+    }
+
+    SJoint getFrontRightClavicle() {
+        return getJoint(jointId: QuadrupedResource.FRONT_RIGHT_CLAVICLE);
+    }
+
+    SJoint getFrontRightShoulder() {
+        return getJoint(jointId: QuadrupedResource.FRONT_RIGHT_SHOULDER);
+    }
+
+    SJoint getFrontRightKnee() {
+        return getJoint(jointId: QuadrupedResource.FRONT_RIGHT_KNEE);
+    }
+
+    SJoint getFrontRightAnkle() {
+        return getJoint(jointId: QuadrupedResource.FRONT_RIGHT_ANKLE);
+    }
+
+    SJoint getFrontRightFoot() {
+        return getJoint(jointId: QuadrupedResource.FRONT_RIGHT_FOOT);
+    }
+
+    SJoint getFrontRightToe() {
+        return getJoint(jointId: QuadrupedResource.FRONT_RIGHT_TOE);
+    }
+
+    SJoint getTail() {
+        return getJoint(jointId: QuadrupedResource.TAIL_0);
+    }
+
+    SJoint getTail1() {
+        return getJoint(jointId: QuadrupedResource.TAIL_0);
+    }
+
+    SJoint getTail2() {
+        return getJoint(jointId: QuadrupedResource.TAIL_1);
+    }
+
+    SJoint getTail3() {
+        return getJoint(jointId: QuadrupedResource.TAIL_2);
+    }
+
+    SJoint getTail4() {
+        return getJoint(jointId: QuadrupedResource.TAIL_3);
+    }
+
+    SJoint getBackLeftHip() {
+        return getJoint(jointId: QuadrupedResource.BACK_LEFT_HIP);
+    }
+
+    SJoint getBackLeftKnee() {
+        return getJoint(jointId: QuadrupedResource.BACK_LEFT_KNEE);
+    }
+
+    SJoint getBackLeftHock() {
+        return getJoint(jointId: QuadrupedResource.BACK_LEFT_HOCK);
+    }
+
+    SJoint getBackLeftAnkle() {
+        return getJoint(jointId: QuadrupedResource.BACK_LEFT_ANKLE);
+    }
+
+    SJoint getBackLeftFoot() {
+        return getJoint(jointId: QuadrupedResource.BACK_LEFT_FOOT);
+    }
+
+    SJoint getBackLeftToe() {
+        return getJoint(jointId: QuadrupedResource.BACK_LEFT_TOE);
+    }
+
+    SJoint getBackRightHip() {
+        return getJoint(jointId: QuadrupedResource.BACK_RIGHT_HIP);
+    }
+
+    SJoint getBackRightKnee() {
+        return getJoint(jointId: QuadrupedResource.BACK_RIGHT_KNEE);
+    }
+
+    SJoint getBackRightHock() {
+        return getJoint(jointId: QuadrupedResource.BACK_RIGHT_HOCK);
+    }
+
+    SJoint getBackRightAnkle() {
+        return getJoint(jointId: QuadrupedResource.BACK_RIGHT_ANKLE);
+    }
+
+    SJoint getBackRightFoot() {
+        return getJoint(jointId: QuadrupedResource.BACK_RIGHT_FOOT);
+    }
+
+    SJoint getBackRightToe() {
+        return getJoint(jointId: QuadrupedResource.BACK_RIGHT_TOE);
+    }
+}

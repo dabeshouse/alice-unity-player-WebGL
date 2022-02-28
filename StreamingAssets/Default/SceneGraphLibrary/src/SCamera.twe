@@ -1,0 +1,37 @@
+class SCamera extends SMovableTurnable {
+  SCamera() {
+    $SceneGraph.createCameraEntity(camera: this);
+    $SceneGraph.bindTransformationProperty(owner: this, property: this.localTransformation, value: this.localTransformation.getValue());
+    $SceneGraph.setCameraVerticalFOV(camera: this, fov: Default.verticalFOV());
+    $SceneGraph.setCameraClipPlanes(camera: this, nearClip: Default.nearClipPlane(), farClip: Default.farClipPlane());
+    leftHand <- new SVRHand(name: "LeftHand", camera: this);
+    rightHand <- new SVRHand(name: "RightHand", camera: this);
+  }
+
+  void setVehicle(SThing vehicle) {
+    this.vehicle <- vehicle;
+    this.localTransformation.value <- $SceneGraph.setVehicle(vehicle: vehicle, rider: this);
+  }
+
+  void moveAndOrientToAGoodVantagePointOf(SThing entity,
+          Duration duration <- Default.duration(),
+          AnimationStyle animationStyle <- Default.animationStyle() ) {
+
+    Position pos <- new Position(x: 2, y: 4, z: -8);
+    Orientation rot <- new Orientation(forward: new Direction(x: -pos.x, y: -pos.y, z: -pos.z), up: Direction.UP);
+    VantagePoint end <- new VantagePoint(position: pos, orientation: rot);
+
+    this.localTransformation.animateValue(endValue: end, asSeenBy: entity, duration: duration, animationStyle: animationStyle);
+  }
+
+  SVRHand getLeftHand() {
+    return leftHand;
+  }
+
+  SVRHand getRightHand() {
+    return rightHand;
+  }
+
+  SVRHand leftHand;
+  SVRHand rightHand;
+}

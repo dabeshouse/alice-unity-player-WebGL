@@ -1,0 +1,57 @@
+class SSlitherer extends SJointedModel {
+    SSlitherer(SlithererResource resource) {
+        super(resource: resource);
+    }
+
+    SJoint[] getTailArray() {
+        return this.getJointArray(jointIdArray: currentResource.tailArray);
+    }
+
+    SJoint getRoot() {
+        return this.getJoint(jointId: SlithererResource.ROOT);
+    }
+
+    SJoint getNeck() {
+        return this.getJoint(jointId: SlithererResource.NECK);
+    }
+
+    SJoint getHead() {
+        return this.getJoint(jointId: SlithererResource.HEAD);
+    }
+
+    SJoint getMouth() {
+        return this.getJoint(jointId: SlithererResource.MOUTH);
+    }
+
+    SJoint getLeftEye() {
+        return this.getJoint(jointId: SlithererResource.LEFT_EYE);
+    }
+
+    SJoint getRightEye() {
+        return this.getJoint(jointId: SlithererResource.RIGHT_EYE);
+    }
+
+    SJoint getLeftEyelid() {
+        return this.getJoint(jointId: SlithererResource.LEFT_EYELID);
+    }
+
+    SJoint getRightEyelid() {
+        return this.getJoint(jointId: SlithererResource.RIGHT_EYELID);
+    }
+
+    SJoint getSpineBase() {
+        return this.getJoint(jointId: SlithererResource.SPINE_BASE);
+    }
+
+    SJoint getSpineMiddle() {
+        return this.getJoint(jointId: SlithererResource.SPINE_MIDDLE);
+    }
+
+    SJoint getSpineUpper() {
+        return this.getJoint(jointId: SlithererResource.SPINE_UPPER);
+    }
+
+    SJoint getTail() {
+        return this.getJoint(jointId: SlithererResource.TAIL_0);
+    }
+}

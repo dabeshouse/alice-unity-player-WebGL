@@ -1,0 +1,57 @@
+class SSwimmer extends SJointedModel {
+  SSwimmer(SwimmerResource resource) {
+    super(resource: resource);
+  }
+
+  SJoint getRoot() {
+    return this.getJoint(jointId: SwimmerResource.ROOT);
+  }
+
+  SJoint getNeck() {
+    return this.getJoint(jointId: SwimmerResource.NECK);
+  }
+
+  SJoint getHead() {
+    return this.getJoint(jointId: SwimmerResource.HEAD);
+  }
+
+  SJoint getMouth() {
+    return this.getJoint(jointId: SwimmerResource.MOUTH);
+  }
+
+  SJoint getLeftEye() {
+    return this.getJoint(jointId: SwimmerResource.LEFT_EYE);
+  }
+
+  SJoint getRightEye() {
+    return this.getJoint(jointId: SwimmerResource.RIGHT_EYE);
+  }
+
+  SJoint getLeftEyelid() {
+    return this.getJoint(jointId: SwimmerResource.LEFT_EYELID);
+  }
+
+  SJoint getRightEyelid() {
+    return this.getJoint(jointId: SwimmerResource.RIGHT_EYELID);
+  }
+
+  SJoint getFrontLeftFin() {
+    return this.getJoint(jointId: SwimmerResource.FRONT_LEFT_FIN);
+  }
+
+  SJoint getFrontRightFin() {
+    return this.getJoint(jointId: SwimmerResource.FRONT_RIGHT_FIN);
+  }
+
+  SJoint getSpineBase() {
+    return this.getJoint(jointId: SwimmerResource.SPINE_BASE);
+  }
+
+  SJoint getSpineMiddle() {
+    return this.getJoint(jointId: SwimmerResource.SPINE_MIDDLE);
+  }
+
+  SJoint getTail() {
+    return this.getJoint(jointId: SwimmerResource.TAIL);
+  }
+}

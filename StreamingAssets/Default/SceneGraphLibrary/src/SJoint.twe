@@ -1,0 +1,96 @@
+class SJoint extends SMovableTurnable {
+    SJoint(JointId id, SJoint parent, SJointedModel model) {
+        this.id <- id;
+        this.name <- id.getName();
+        this.parent <- parent;
+        if (parent == null) {
+            this.vehicle <- model;
+        } else {
+            this.vehicle <- parent;
+        }
+        this.model <- model;
+        bindToScene();
+    }
+
+    SJoint(TextString name, SJoint parent, SJointedModel model) {
+        this.name <- name;
+        this.parent <- parent;
+        if (parent == null) {
+            this.vehicle <- model;
+        } else {
+            this.vehicle <- parent;
+        }
+        this.model <- model;
+        bindToScene();
+    }
+
+    void bindToScene() {
+        $SceneGraph.createJointEntity(joint: this, id: name, model: model);
+        defaultTransformation <- $SceneGraph.getLocalTransformation(thing: this);
+        $SceneGraph.bindTransformationProperty(owner: this, property: localTransformation, value: defaultTransformation);
+        localTransformation.setValue(value: defaultTransformation);
+    }
+
+    TextString getId() {
+        return this.id;
+    }
+
+    SJoint getParent() {
+        return this.parent;
+    }
+
+    SJointedModel getModel() {
+        return this.model;
+    }
+
+    Boolean isPivotVisible() {
+        if( this.axes != null ) {
+            return this.axes.getParent() == this.getSgComposite();
+        } else {
+            return false;
+        }
+    }
+
+    void setPivotVisible(Boolean isPivotVisible) {
+        if( isPivotVisible ) {
+            this.getPivot().setParent( this.getSgComposite() );
+        } else {
+            if( this.axes != null ) {
+                this.axes.setParent( null );
+            }
+        }
+    }
+
+    // TODO reconcile size with minimum bounding box
+
+    DecimalNumber getWidth() {
+        this.getSize().width;
+    }
+
+    DecimalNumber getHeight() {
+        this.getSize().height;
+    }
+
+    DecimalNumber getDepth() {
+        this.getSize().depth;
+    }
+
+    void straightenOut(Duration duration, AnimationStyle animationStyle) {
+        this.localTransformation.animateValue(endValue: defaultTransformation, asSeenBy: this.getVehicle(), duration: duration, animationStyle: animationStyle);
+    }
+
+    void setPositionRelativeToVehicle(Position position,
+                                      Duration duration <- Default.duration(),
+                                      AnimationStyle animationStyle <- Default.animationStyle(),
+                                      PathStyle pathStyle <- Default.pathStyle()) {
+
+      Scale parentScale <- model.getScale();
+      Position newPos <- new Position(x: position.x / parentScale.x, y: position.y / parentScale.y, z: position.z / parentScale.z);
+      this.localTransformation.animatePosition(endValue: newPos, duration: duration, animationStyle: animationStyle);
+    }
+
+    @CompletelyHidden JointId id;
+    @CompletelyHidden SJoint parent;
+    @CompletelyHidden SJointedModel model;
+    @CompletelyHidden VantagePoint defaultTransformation;
+}

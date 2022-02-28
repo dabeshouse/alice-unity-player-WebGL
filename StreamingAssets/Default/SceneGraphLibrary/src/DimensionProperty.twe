@@ -1,0 +1,13 @@
+class DimensionProperty extends DecimalNumberProperty {
+  DimensionProperty(SThing owner, SizeProperty sizeProperty, DecimalNumber value) {
+    super(owner: owner, value: value);
+    this.sizeProperty <- sizeProperty;
+  }
+
+  void setValue(DecimalNumber value) {
+    super.setValue(value: value);
+    sizeProperty.sync();
+  }
+
+  @CompletelyHidden SizeProperty sizeProperty;
+}

@@ -1,0 +1,117 @@
+class SJointedModel extends SModel {
+    SJointedModel(JointedModelResource resource) {
+        super(resource: resource.getName());
+        currentResource <- resource;
+        this.name <- resource.getName();
+        buildJoints(resource: resource);
+    }
+
+    @CompletelyHidden void setJointedModelResource(JointedModelResource resource) {
+        if (currentResource == resource) {
+            return;
+        }
+        currentResource <- resource;
+        resourceName <- resource.getName();
+        cachedNamedJoints <- null;
+        $SceneGraph.setEntityResource(model: this, resource: resourceName);
+        buildJoints(resource: resource);
+        // TODO preserve applied joint transformations (see JointedModelImp.setNewResource() in java)
+        size.sync();
+        defaultSize <- size.getValue();
+    }
+
+    SJoint getJoint(JointId jointId) {
+        if (jointId != null) {
+            return getJoint(name: jointId.getName());
+        }
+        return null;
+    }
+
+    @CompletelyHidden SJoint getJoint(TextString name) {
+        if (joints != null) {
+            forEach(SJoint joint in joints) {
+                if (joint.getId().getName() == name) {
+                    return joint;
+                }
+            }
+        }
+        return null;
+    }
+
+    @CompletelyHidden SJoint[] getJointArray(JointId[] jointIdArray) {
+        WholeNumber len <- jointIdArray.length;
+        SJoint[] jointArray <- new SJoint[len];
+        if (this.joints != null) {
+            WholeNumber index <- 0;
+            countUpTo(index < len) {
+                jointArray[index] <- this.getJoint(jointId: jointIdArray[index]);
+            }
+        }
+        return jointArray;
+    }
+
+    @CompletelyHidden SJoint[] getJointArray(JointArrayId jointArrayId) {
+        if (cachedNamedJoints == null) {
+            TextString[] jointNames <- $SceneGraph.findJointsBeginningWith(start: jointArrayId.getElementNamePattern(), model: this);
+            WholeNumber len <- jointNames.length;
+            SJoint[] members <- new SJoint[len];
+            SJoint parent <- getJoint(name: "ROOT");
+            countUpTo(index < len) {
+                TextString jointName <- jointNames[index];
+                SJoint existingJoint <- getJoint(name: jointName);
+                if (existingJoint != null) {
+                    // Probably the wheels on a train
+                    members[index] <- existingJoint;
+                } else {
+                    // Probably the path along a railroad track
+                    parent <- new SJoint(name: jointName, parent: parent, model: this);
+                    members[index] <- parent;
+                }
+            }
+            cachedNamedJoints <- new DynamicJointArray(pattern: jointArrayId.getElementNamePattern(), members: members);
+        } else {
+            // Verify the stored value has the same name. Since no model (yet) has more than one dynamic array there is only cached value.
+            if (cachedNamedJoints.getElementNamePattern() != jointArrayId.getElementNamePattern()) {
+                $Debug.log(message: getName() .. " has multiple dynamic joint arrays " .. cachedNamedJoints.getElementNamePattern() .. " and " .. jointArrayId.getElementNamePattern() .. ". This is not yet supported.");
+            }
+        }
+        return cachedNamedJoints.getMembers();
+    }
+
+    void straightenOutJoints(Duration duration <- Default.duration(), AnimationStyle animationStyle <- Default.animationStyle()) {
+        if (this.joints != null) {
+            eachTogether(SJoint joint in this.joints) {
+                joint.straightenOut(duration: duration, animationStyle: animationStyle);
+            }
+        }
+    }
+
+    void strikePose(JointedModelPose pose, Duration duration <- Default.duration(), AnimationStyle animationStyle <- Default.animationStyle()) {
+        eachTogether(JointIdTransformationPair pair in pose.getPairs()) {
+            SJoint joint <- this.getJoint(jointId: pair.getId());
+            if (joint != null) {
+                joint.localTransformation.animateValue(endValue: pair.getTransformation(), asSeenBy: joint.getVehicle(), duration: duration, animationStyle: animationStyle);
+            }
+        }
+    }
+
+    @CompletelyHidden void buildJoints(JointedModelResource resource) {
+        if (this.joints != null) {
+            // TODO Reuse and map existing joint values in
+        }
+        JointId[] ids <- resource.getJointIds();
+        WholeNumber len <- ids.length;
+        this.joints <- new SJoint[len];
+        countUpTo(index < len) {
+            JointId jointId <- ids[index];
+            SJoint parent <- getJoint(jointId: jointId.getParent());
+            joints[index] <- new SJoint(id: jointId, parent: parent, model: this);
+        }
+    }
+
+    @CompletelyHidden SJoint[] joints;
+    @CompletelyHidden JointedModelResource currentResource;
+
+    // Existing models never have more than one of these. If that should change this will need to be turned into a collection.
+    @CompletelyHidden DynamicJointArray cachedNamedJoints;
+}
