@@ -1,5 +1,0 @@
-class STransport extends SJointedModel {
-  STransport(TransportResource resource) {
-    super(resource: resource);
-  }
-}

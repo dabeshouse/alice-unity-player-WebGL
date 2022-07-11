@@ -1,5 +1,0 @@
-class MarineMammalResource extends SwimmerResource {
-    MarineMammalResource(TextString name) {
-        super(name: name);
-    }
-}

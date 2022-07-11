@@ -1,5 +1,0 @@
-class WatercraftResource extends TransportResource {
-    WatercraftResource(TextString name) {
-        super(name: name);
-    }
-}

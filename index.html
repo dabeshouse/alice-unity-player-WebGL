@@ -27,15 +27,15 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/playerWebGLBuildSettings.loader.js";
+      var loaderUrl = buildUrl + "/player.loader.js";
       var config = {
-        dataUrl: buildUrl + "/playerWebGLBuildSettings.data",
-        frameworkUrl: buildUrl + "/playerWebGLBuildSettings.framework.js",
-        codeUrl: buildUrl + "/playerWebGLBuildSettings.wasm",
+        dataUrl: buildUrl + "/player.data.unityweb",
+        frameworkUrl: buildUrl + "/player.framework.js.unityweb",
+        codeUrl: buildUrl + "/player.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "The Alice Project",
         productName: "Alice Player",
-        productVersion: "1.0-beta.15+glTF",
+        productVersion: "1.0-beta.16",
       };
 
       var container = document.querySelector("#unity-container");

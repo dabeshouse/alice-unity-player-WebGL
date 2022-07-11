@@ -1,5 +1,0 @@
-class SAxes extends SShape {
-  SAxes() {
-    super(resource: $SceneGraph.AXES);
-  }
-}

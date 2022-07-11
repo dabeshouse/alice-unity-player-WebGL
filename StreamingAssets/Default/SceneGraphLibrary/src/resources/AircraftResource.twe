@@ -1,5 +1,0 @@
-class AircraftResource extends TransportResource {
-    AircraftResource(TextString name) {
-        super(name: name);
-    }
-}

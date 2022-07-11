@@ -1,5 +1,0 @@
-class ToddlerPersonResource extends PersonResource {
-    ToddlerPersonResource(TextString name) {
-        super(name: name);
-    }
-}

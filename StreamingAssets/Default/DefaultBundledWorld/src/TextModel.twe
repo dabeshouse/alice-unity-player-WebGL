@@ -1,5 +1,0 @@
-class TextModel extends STextModel models TextModel {
-  TextModel() {
-    super();
-  }
-}
